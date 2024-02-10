@@ -13,7 +13,9 @@ add_executable(Test
         WebRequest.cpp
         WebRequest.h
         Price.cpp
-        Price.h)
+        Price.h
+        Portfolio.cpp
+        Portfolio.h)
 
 target_link_libraries(Test CURL::libcurl)
 target_link_libraries(Test nlohmann_json::nlohmann_json)
