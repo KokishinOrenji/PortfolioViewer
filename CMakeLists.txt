@@ -7,15 +7,19 @@ include_directories("D:\\boost\\boost_1_84_0")
 find_package(CURL)
 find_package(nlohmann_json)
 add_executable(Test
-        PriceSource.cpp
-        PriceSource.h
+        Price/PriceSource.cpp
+        Price/PriceSource.h
         Test.cpp
-        WebRequest.cpp
-        WebRequest.h
-        Price.cpp
-        Price.h
-        Portfolio.cpp
-        Portfolio.h)
+        Price/WebRequest.cpp
+        Price/WebRequest.h
+        Price/Price.cpp
+        Price/Price.h
+        Portfolio/Portfolio.cpp
+        Portfolio/Portfolio.h
+        Portfolio/Position.cpp
+        Portfolio/Position.h
+        Price/PriceSourceFactory.cpp
+        Price/PriceSourceFactory.h)
 
 target_link_libraries(Test CURL::libcurl)
 target_link_libraries(Test nlohmann_json::nlohmann_json)

@@ -68,31 +68,3 @@ std::string YahooPriceSource::ConvertToTTime(const std::shared_ptr<boost::gregor
     boost::posix_time::time_duration::sec_type seconds = (pt - epoch).total_seconds();
     return std::to_string(seconds);
 }
-/*
-
-CoinGeckoSource::CoinGeckoSource(
-        const std::string& ticker,
-        const std::shared_ptr<IWebRequest>& webRequest)
-        : ticker(ticker),
-          WebPriceSource(webRequest),
-          url("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=$symbols&tsyms=USD,GBP")
-{}
-
-std::string apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"; // Example API URL
-
-
-std::shared_ptr<Price> CoinGeckoSource::GetPriceAsync(const std::shared_ptr<boost::gregorian::date>& date)
-{
-    auto urlWithSubs = url;
-    auto nextDay = std::make_shared<boost::gregorian::date>(*date + boost::gregorian::days(1));
-    auto startString =  ConvertToTTime(date);
-    auto endString =  ConvertToTTime(nextDay);
-    boost::algorithm::replace_all(urlWithSubs, "$ticker", ticker);
-    boost::algorithm::replace_all(urlWithSubs, "$start", startString);
-    boost::algorithm::replace_all(urlWithSubs, "$end", endString);
-    std::cout << url << std::endl;
-    std::cout << urlWithSubs << std::endl;
-    auto fromWeb = GetAsync(urlWithSubs);
-    return 0;
-}
-*/

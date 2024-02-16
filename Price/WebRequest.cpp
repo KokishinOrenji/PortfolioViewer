@@ -1,6 +1,6 @@
 #include <string>
 #include <curl/curl.h>
-#include <future>
+#include <iostream>
 #include "WebRequest.h"
 
 WebRequest::WebRequest(const std::string &certLocation, bool verbose)

@@ -1,6 +1,6 @@
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <iostream>
-#include "PriceSource.h"
+#include "Price/PriceSource.h"
 
 int main() {
     boost::gregorian::date today = boost::gregorian::day_clock::local_day();

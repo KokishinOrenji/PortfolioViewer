@@ -2,6 +2,7 @@
 #define TEST_WEBREQUEST_H
 
 #include <curl/curl.h> // For libcurl
+#include <future>
 
 class IWebRequest {
 public:
