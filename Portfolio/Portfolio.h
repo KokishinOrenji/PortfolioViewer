@@ -6,7 +6,7 @@
 
 class Portfolio {
 public:
-    explicit Portfolio(std::vector<std::shared_ptr<Position>> &positions);
+    explicit Portfolio(const std::vector<std::shared_ptr<Position>> &positions);
     static const std::vector<std::string> inputColumns;
     static const std::vector<std::string> generatedColumns;
     std::vector<std::shared_ptr<Position>> positions;
