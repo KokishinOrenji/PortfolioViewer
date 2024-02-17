@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.27)
-project(Test)
+project(PortfolioViewer)
 
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories("D:\\boost\\boost_1_84_0")
 find_package(CURL)
 find_package(nlohmann_json)
-add_executable(Test
+add_executable(PortfolioViewer
         Price/PriceSource.cpp
         Price/PriceSource.h
-        Test.cpp
+        PortfolioViewer.cpp
         Price/WebRequest.cpp
         Price/WebRequest.h
         Price/Price.cpp
@@ -27,6 +27,6 @@ add_executable(Test
         Price/FilePriceRepository.cpp
         Price/FilePriceRepository.h)
 
-target_link_libraries(Test CURL::libcurl)
-target_link_libraries(Test nlohmann_json::nlohmann_json)
-#target_link_libraries(Test "D:\\boost\\boost_1_84_0\\stage\\lib")
+target_link_libraries(PortfolioViewer CURL::libcurl)
+target_link_libraries(PortfolioViewer nlohmann_json::nlohmann_json)
+#target_link_libraries(PortfolioViewer "D:\\boost\\boost_1_84_0\\stage\\lib")
