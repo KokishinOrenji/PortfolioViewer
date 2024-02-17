@@ -1,6 +1,5 @@
-#ifndef TEST_PRICE_H
-#define TEST_PRICE_H
-
+#ifndef PORTFOLIOVIEWER_PRICE_H
+#define PORTFOLIOVIEWER_PRICE_H
 
 #include <iostream>
 #include <utility>
@@ -20,6 +19,9 @@ public:
     Price(boost::gregorian::date date, double open, double high, double low, double close, double adjClose, double volume)
             : date(std::move(date)), open(open), high(high), low(low), close(close), adjClose(adjClose), volume(volume) {}
 
+    Price(boost::gregorian::date date, double adjClose)
+            : date(std::move(date)), open(adjClose), high(adjClose), low(adjClose), close(adjClose), adjClose(adjClose), volume(0) {}
+
     Price(std::string csvValues);
 
     // You can add more functions here if needed, like a function to print the data
@@ -30,5 +32,4 @@ public:
     }
 };
 
-
-#endif //TEST_PRICE_H
+#endif //PORTFOLIOVIEWER_PRICE_H

@@ -8,7 +8,7 @@ Portfolio::Portfolio(const std::vector<std::shared_ptr<Position>> &positions) : 
 const std::vector<std::string> Portfolio::inputColumns = {"Ticker","Type","Liquidity Type","Price Source","Quantity"};
 const std::vector<std::string> Portfolio::generatedColumns = {"Price","Value"};
 
-std::string Portfolio::GetCsvFormat(const std::shared_ptr<boost::gregorian::date>& date)
+std::string Portfolio::GetCsvFormat(const boost::gregorian::date& date)
 {
     std::ostringstream stream;
     stream << boost::algorithm::join(inputColumns, ",") << ","
@@ -60,13 +60,14 @@ std::shared_ptr<Portfolio> PortfolioFactory::createFromCsvFileContents(const std
         if (cols.size() != 5)
         {
             std::ostringstream error;
-            error << "Incorrect number of columns. Should be 5, but there is "
+            error << "Incorrect number of columns in positions file. Should be 5, but there is "
                     << cols.size()
                     << "."
                     << std::endl
                     << "Full text: "
                     << contents[i];
-            throw new std::exception(error.str().c_str());
+            std::cout << error.str().c_str() << std::endl;
+            continue;
         }
         positions.push_back(std::make_shared<Position>(cols[0], cols[1], cols[2],cols[3],
                                                         PriceSourceFactory::Create(cols[3], cols[0]),

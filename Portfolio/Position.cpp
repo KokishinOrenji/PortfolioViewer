@@ -13,7 +13,7 @@ Position::Position(
           liquidityType(liquidityType),
           priceSourceName(priceSourceName) {}
 
-std::future<double> Position::GetPriceAsync(const std::shared_ptr<boost::gregorian::date>& date)
+std::future<double> Position::GetPriceAsync(const boost::gregorian::date& date)
 {
     return std::async(std::launch::async, [this, date]() -> double {
        auto price = priceSource->GetPriceAsync(date);

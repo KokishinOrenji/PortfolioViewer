@@ -1,5 +1,5 @@
-#ifndef TEST_PORTFOLIO_H
-#define TEST_PORTFOLIO_H
+#ifndef PORTFOLIOVIEWER_PORTFOLIO_H
+#define PORTFOLIOVIEWER_PORTFOLIO_H
 
 #include <vector>
 #include "Position.h"
@@ -10,7 +10,7 @@ public:
     static const std::vector<std::string> inputColumns;
     static const std::vector<std::string> generatedColumns;
     std::vector<std::shared_ptr<Position>> positions;
-    std::string GetCsvFormat(const std::shared_ptr<boost::gregorian::date>& date);
+    std::string GetCsvFormat(const boost::gregorian::date& date);
 };
 
 class PortfolioFactory {
@@ -19,4 +19,4 @@ public:
     static std::shared_ptr<Portfolio> createFromCsvFileContents(const std::vector<std::string> & contents, bool hasHeaders = true);
 };
 
-#endif //TEST_PORTFOLIO_H
+#endif //PORTFOLIOVIEWER_PORTFOLIO_H

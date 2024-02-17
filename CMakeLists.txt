@@ -19,7 +19,13 @@ add_executable(Test
         Portfolio/Position.cpp
         Portfolio/Position.h
         Price/PriceSourceFactory.cpp
-        Price/PriceSourceFactory.h)
+        Price/PriceSourceFactory.h
+        Price/YahooPriceSource.cpp
+        Price/YahooPriceSource.h
+        Price/FilePriceSource.cpp
+        Price/FilePriceSource.h
+        Price/FilePriceRepository.cpp
+        Price/FilePriceRepository.h)
 
 target_link_libraries(Test CURL::libcurl)
 target_link_libraries(Test nlohmann_json::nlohmann_json)

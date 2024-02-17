@@ -1,5 +1,5 @@
-#ifndef TEST_POSITION_H
-#define TEST_POSITION_H
+#ifndef PORTFOLIOVIEWER_POSITION_H
+#define PORTFOLIOVIEWER_POSITION_H
 
 #include "../Price/PriceSource.h"
 
@@ -19,6 +19,6 @@ public:
     std::string liquidityType;
     std::string priceSourceName;
 
-    std::future<double> GetPriceAsync(const std::shared_ptr<boost::gregorian::date>& date);
+    std::future<double> GetPriceAsync(const boost::gregorian::date& date);
 };
 #endif
