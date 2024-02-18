@@ -24,7 +24,6 @@ public:
 
     Price(std::string csvValues);
 
-    // You can add more functions here if needed, like a function to print the data
     void print() const {
         std::cout << "Date: " << boost::gregorian::to_simple_string(date) << ", Open: " << open << ", High: " << high
                   << ", Low: " << low << ", Close: " << close << ", Adj Close: " << adjClose

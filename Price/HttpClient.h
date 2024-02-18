@@ -1,25 +1,25 @@
-#ifndef PORTFOLIOVIEWER_WEBREQUEST_H
-#define PORTFOLIOVIEWER_WEBREQUEST_H
+#ifndef PORTFOLIOVIEWER_HTTPCLIENT_H
+#define PORTFOLIOVIEWER_HTTPCLIENT_H
 
 #include <curl/curl.h> // For libcurl
 #include <future>
 
-class IWebRequest {
+class IHttpClient {
 public:
     virtual std::future<std::string> GetAsync(const std::string & url) = 0;
-    virtual ~IWebRequest() {}
+    virtual ~IHttpClient() {}
 };
 
-class WebRequest : public IWebRequest {
+class HttpClient : public IHttpClient {
 private:
     const std::string certLocation;
     const bool verbose;
 public:
-    WebRequest(const std::string & certLocation, bool verbose = false);
+    HttpClient(const std::string & certLocation, bool verbose = false);
     std::future<std::string> GetAsync(const std::string & url);
-    ~WebRequest();
+    ~HttpClient();
 private:
     static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userp);
 };
 
-#endif //PORTFOLIOVIEWER_WEBREQUEST_H
+#endif //PORTFOLIOVIEWER_HTTPCLIENT_H

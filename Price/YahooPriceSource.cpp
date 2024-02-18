@@ -1,9 +1,10 @@
 #include <boost/date_time/posix_time/ptime.hpp>
 #include "YahooPriceSource.h"
+#include "WebPriceSource.h"
 
 YahooPriceSource::YahooPriceSource(
         const std::string& ticker,
-        const std::shared_ptr<IWebRequest>& webRequest)
+        const std::shared_ptr<IHttpClient>& webRequest)
         : ticker(ticker),
           WebPriceSource(webRequest),
           url("https://query1.finance.yahoo.com/v7/finance/download/$ticker?period1=$start&period2=$end&interval=1d&events=history&includeAdjustedClose=true")

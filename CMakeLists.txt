@@ -9,9 +9,9 @@ find_package(nlohmann_json)
 add_executable(PortfolioViewer
         Price/PriceSource.cpp
         Price/PriceSource.h
-        PortfolioViewer.cpp
-        Price/WebRequest.cpp
-        Price/WebRequest.h
+        main.cpp
+        Price/HttpClient.cpp
+        Price/HttpClient.h
         Price/Price.cpp
         Price/Price.h
         Portfolio/Portfolio.cpp
@@ -25,7 +25,9 @@ add_executable(PortfolioViewer
         Price/FilePriceSource.cpp
         Price/FilePriceSource.h
         Price/FilePriceRepository.cpp
-        Price/FilePriceRepository.h)
+        Price/FilePriceRepository.h
+        Price/WebPriceSource.cpp
+        Price/WebPriceSource.h)
 
 target_link_libraries(PortfolioViewer CURL::libcurl)
 target_link_libraries(PortfolioViewer nlohmann_json::nlohmann_json)

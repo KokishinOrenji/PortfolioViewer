@@ -6,7 +6,7 @@ std::shared_ptr<IPriceSource> PriceSourceFactory::Create(const std::string& pric
 {
     if (priceSourceName == "Yahoo")
     {
-        auto webRequest = std::make_shared<WebRequest>("G:\\Program Files\\Git\\mingw64\\etc\\ssl\\certs\\ca-bundle.crt", true);
+        auto webRequest = std::make_shared<HttpClient>("G:\\Program Files\\Git\\mingw64\\etc\\ssl\\certs\\ca-bundle.crt", true);
         return std::make_shared<YahooPriceSource>(ticker, webRequest);
     }
     if (priceSourceName == "FILE")

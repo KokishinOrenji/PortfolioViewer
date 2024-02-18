@@ -2,6 +2,7 @@
 #define PORTFOLIOVIEWER_YAHOOPRICESOURCE_H
 
 #include "PriceSource.h"
+#include "WebPriceSource.h"
 
 class YahooPriceSource : public WebPriceSource {
 private:
@@ -11,7 +12,7 @@ private:
 public:
     YahooPriceSource(
             const std::string& ticker,
-            const std::shared_ptr<IWebRequest>& webRequest);
+            const std::shared_ptr<IHttpClient>& webRequest);
 
     std::future<std::shared_ptr<Price>> GetPriceAsync(const boost::gregorian::date& date) override;
 

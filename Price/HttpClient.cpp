@@ -1,15 +1,14 @@
 #include <string>
 #include <curl/curl.h>
-#include <iostream>
-#include "WebRequest.h"
+#include "HttpClient.h"
 
-WebRequest::WebRequest(const std::string &certLocation, bool verbose)
+HttpClient::HttpClient(const std::string &certLocation, bool verbose)
 :certLocation(certLocation)
 ,verbose(verbose)
 {
 }
 
-std::future<std::string> WebRequest::GetAsync(const std::string &url) {
+std::future<std::string> HttpClient::GetAsync(const std::string &url) {
     return std::async(std::launch::async, [this, url]() -> std::string {
         auto curl = curl_easy_init();
         CURLcode res;
@@ -39,11 +38,11 @@ std::future<std::string> WebRequest::GetAsync(const std::string &url) {
     });
 }
 
-WebRequest::~WebRequest()
+HttpClient::~HttpClient()
 {
 }
 
-size_t WebRequest::WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userp)
+size_t HttpClient::WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userp)
 {
     userp->append((char*)contents, size * nmemb);
     return size * nmemb;
