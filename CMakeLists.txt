@@ -7,7 +7,6 @@ include_directories("D:\\boost\\boost_1_84_0")
 find_package(CURL)
 find_package(nlohmann_json)
 add_executable(PortfolioViewer
-        src/Price/PriceSource.cpp
         src/Price/PriceSource.h
         src/main.cpp
         src/Price/HttpClient.cpp
@@ -31,3 +30,13 @@ add_executable(PortfolioViewer
 
 target_link_libraries(PortfolioViewer CURL::libcurl)
 target_link_libraries(PortfolioViewer nlohmann_json::nlohmann_json)
+
+find_package(doctest)
+
+# Test executable
+add_executable(PortfolioViewerTests
+        test/test_main.cpp
+)
+
+target_link_libraries(PortfolioViewerTests PortfolioViewerLib)
+target_link_libraries(PortfolioViewerTests doctest::doctest)
