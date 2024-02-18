@@ -7,28 +7,27 @@ include_directories("D:\\boost\\boost_1_84_0")
 find_package(CURL)
 find_package(nlohmann_json)
 add_executable(PortfolioViewer
-        Price/PriceSource.cpp
-        Price/PriceSource.h
-        main.cpp
-        Price/HttpClient.cpp
-        Price/HttpClient.h
-        Price/Price.cpp
-        Price/Price.h
-        Portfolio/Portfolio.cpp
-        Portfolio/Portfolio.h
-        Portfolio/Position.cpp
-        Portfolio/Position.h
-        Price/PriceSourceFactory.cpp
-        Price/PriceSourceFactory.h
-        Price/YahooPriceSource.cpp
-        Price/YahooPriceSource.h
-        Price/FilePriceSource.cpp
-        Price/FilePriceSource.h
-        Price/FilePriceRepository.cpp
-        Price/FilePriceRepository.h
-        Price/WebPriceSource.cpp
-        Price/WebPriceSource.h)
+        src/Price/PriceSource.cpp
+        src/Price/PriceSource.h
+        src/main.cpp
+        src/Price/HttpClient.cpp
+        src/Price/HttpClient.h
+        src/Price/Price.cpp
+        src/Price/Price.h
+        src/Portfolio/Portfolio.cpp
+        src/Portfolio/Portfolio.h
+        src/Portfolio/Position.cpp
+        src/Portfolio/Position.h
+        src/Price/PriceSourceFactory.cpp
+        src/Price/PriceSourceFactory.h
+        src/Price/YahooPriceSource.cpp
+        src/Price/YahooPriceSource.h
+        src/Price/FilePriceSource.cpp
+        src/Price/FilePriceSource.h
+        src/Price/FilePriceRepository.cpp
+        src/Price/FilePriceRepository.h
+        src/Price/WebPriceSource.cpp
+        src/Price/WebPriceSource.h)
 
 target_link_libraries(PortfolioViewer CURL::libcurl)
 target_link_libraries(PortfolioViewer nlohmann_json::nlohmann_json)
-#target_link_libraries(PortfolioViewer "D:\\boost\\boost_1_84_0\\stage\\lib")
