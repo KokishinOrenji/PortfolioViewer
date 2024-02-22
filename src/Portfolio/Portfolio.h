@@ -15,8 +15,11 @@ public:
 
 class PortfolioFactory {
 public:
-    static std::shared_ptr<Portfolio> createFromCsv(const std::string & filePath);
-    static std::shared_ptr<Portfolio> createFromCsvFileContents(const std::vector<std::string> & contents, bool hasHeaders = true);
+    static std::shared_ptr<Portfolio> createFromCsv(const std::string & filePath, const boost::gregorian::date & date);
+    static std::shared_ptr<Portfolio> createFromCsvFileContents(
+            const std::vector<std::string> & contents,
+            const boost::gregorian::date & date,
+            bool hasHeaders = true);
 };
 
 #endif //PORTFOLIOVIEWER_PORTFOLIO_H

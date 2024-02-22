@@ -1,11 +1,12 @@
 #include <fstream>
+#include <unordered_map>
 #include "Portfolio.h"
 #include "../Price/PriceSourceFactory.h"
 #include <boost/algorithm/string.hpp>
 
 Portfolio::Portfolio(const std::vector<std::shared_ptr<Position>> &positions) : positions(positions) {}
 
-const std::vector<std::string> Portfolio::inputColumns = {"Ticker","Type","Liquidity Type","Price Source","Quantity"};
+const std::vector<std::string> Portfolio::inputColumns = {"Date","Ticker","Type","Liquidity Type","Price Source","Quantity"};
 const std::vector<std::string> Portfolio::generatedColumns = {"Price","Value"};
 
 std::string Portfolio::GetCsvFormat(const boost::gregorian::date& date)
@@ -28,7 +29,9 @@ std::string Portfolio::GetCsvFormat(const boost::gregorian::date& date)
     return stream.str();
 }
 
-std::shared_ptr<Portfolio> PortfolioFactory::createFromCsv(const std::string & filePath)
+std::shared_ptr<Portfolio> PortfolioFactory::createFromCsv(
+        const std::string & filePath,
+        const boost::gregorian::date & date)
 {
     std::vector<std::string> lines;
     std::ifstream file(filePath);
@@ -46,21 +49,22 @@ std::shared_ptr<Portfolio> PortfolioFactory::createFromCsv(const std::string & f
         lines.push_back(line);
     }
 
-    return createFromCsvFileContents(lines);
+    return createFromCsvFileContents(lines, date);
 }
 
-std::shared_ptr<Portfolio> PortfolioFactory::createFromCsvFileContents(const std::vector<std::string> & contents, bool hasHeaders)
+std::shared_ptr<Portfolio> PortfolioFactory::createFromCsvFileContents(const std::vector<std::string> & contents, const boost::gregorian::date & date, bool hasHeaders)
 {
     size_t offset = hasHeaders ? 1 : 0;
-    std::vector<std::shared_ptr<Position>> positions;
+    std::unordered_map<std::string, std::shared_ptr<Position>> positionsMap;
+    auto expectedColumns = Portfolio::inputColumns.size();
     for (auto i = offset; i < contents.size(); ++i)
     {
         std::vector<std::string> cols;
         boost::algorithm::split(cols, contents[i], boost::is_any_of(","));
-        if (cols.size() != 5)
+        if (cols.size() != expectedColumns)
         {
             std::ostringstream error;
-            error << "Incorrect number of columns in positions file. Should be 5, but there is "
+            error << "Incorrect number of columns in positionsMap file. Should be " << expectedColumns << ", but there are "
                     << cols.size()
                     << "."
                     << std::endl
@@ -69,10 +73,39 @@ std::shared_ptr<Portfolio> PortfolioFactory::createFromCsvFileContents(const std
             std::cout << error.str().c_str() << std::endl;
             continue;
         }
-        positions.push_back(std::make_shared<Position>(cols[0], cols[1], cols[2],cols[3],
-                                                        PriceSourceFactory::Create(cols[3], cols[0]),
-                                                        std::stod(cols[4])));
+        auto posDate = boost::gregorian::from_string(cols[0]);
+        if (posDate <= date)
+        {
+            auto ticker = cols[1];
+            auto existingPos = positionsMap.find(ticker);
+            auto candidateNewPos = std::make_shared<Position>(
+                    cols[1],
+                    cols[2],
+                    cols[3],
+                    cols[4],
+                    posDate,
+                    PriceSourceFactory::Create(cols[4], cols[1]),
+                    std::stod(cols[5]));
+
+            if (existingPos == positionsMap.end())
+            {
+                positionsMap[ticker] = candidateNewPos;
+            }
+            else
+            {
+                if (candidateNewPos->date > existingPos->second->date)
+                {
+                    positionsMap[ticker] = candidateNewPos;
+                }
+            }
+        }
     }
 
+    std::vector<std::shared_ptr<Position>> positions;
+    std::transform(
+            positionsMap.begin(),
+            positionsMap.end(),
+            std::back_inserter(positions),
+            [](const auto & pair) { return pair.second; } );
     return std::make_shared<Portfolio>(positions);
 }

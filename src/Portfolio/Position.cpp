@@ -5,13 +5,15 @@ Position::Position(
         const std::string &type,
         const std::string &liquidityType,
         const std::string &priceSourceName,
+        const boost::gregorian::date& date,
         const std::shared_ptr<IPriceSource> &priceSource,
         double quantity)
         : priceSource(priceSource),
           quantity(quantity), ticker(ticker),
           type(type),
           liquidityType(liquidityType),
-          priceSourceName(priceSourceName) {}
+          priceSourceName(priceSourceName),
+          date(date) {}
 
 std::future<double> Position::GetPriceAsync(const boost::gregorian::date& date)
 {

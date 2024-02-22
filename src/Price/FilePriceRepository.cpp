@@ -10,7 +10,10 @@ void FilePriceRepository::LoadData() {
         std::vector<std::string> cols;
         boost::algorithm::split(cols, line, boost::is_any_of(","));
         if (cols.size() != 3) {
-            throw std::runtime_error("Incorrect number of columns in file: " + filePath);
+            std::stringstream error;
+            error << "Incorrect number of columns in row  in " << filePath
+                << ". Expected 3, actual " << cols.size() << ". Full text: " << line;
+            continue;
         }
         auto dateFromFile = boost::gregorian::from_string(cols[0]);
         auto price = std::make_shared<Price>(dateFromFile, std::stod(cols[2]));

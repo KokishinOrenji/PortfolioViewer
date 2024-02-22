@@ -46,7 +46,6 @@ std::future<std::shared_ptr<Price>> YahooPriceSource::GetPriceAsync(const boost:
     });
 }
 
-
 std::string YahooPriceSource::ConvertToTTime(const boost::gregorian::date& date)
 {
     boost::posix_time::ptime pt(date);

@@ -9,6 +9,7 @@ public:
              const std::string &type,
              const std::string &liquidityType,
              const std::string &priceSourceName,
+             const boost::gregorian::date& date,
              const std::shared_ptr<IPriceSource> &priceSource,
              double quantity);
 
@@ -18,6 +19,7 @@ public:
     std::string type;
     std::string liquidityType;
     std::string priceSourceName;
+    boost::gregorian::date date;
 
     std::future<double> GetPriceAsync(const boost::gregorian::date& date);
 };
