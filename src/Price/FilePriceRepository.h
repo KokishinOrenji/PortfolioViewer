@@ -11,7 +11,7 @@
 
 class FilePriceRepository {
 private:
-    std::unordered_map<std::string, std::vector<std::shared_ptr<Price>>> priceMap;
+    std::unordered_map<std::string, std::vector<Price>> priceMap;
     std::string filePath;
     static std::mutex instanceMutex;
 
@@ -19,7 +19,7 @@ private:
 public:
     FilePriceRepository(const std::string& filePath) : filePath(filePath) {}
     static std::shared_ptr<FilePriceRepository> GetInstance(const std::string& filePath);
-    const std::vector<std::shared_ptr<Price>>& GetPrices(const std::string& ticker) {
+    const std::vector<Price>& GetPrices(const std::string& ticker) {
         return priceMap[ticker];
     }
     // Delete copy constructor and assignment operator

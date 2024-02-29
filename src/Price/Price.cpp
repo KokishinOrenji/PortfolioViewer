@@ -3,6 +3,8 @@
 #include <boost/date_time/gregorian/parsers.hpp>
 #include "Price.h"
 
+Price Price::PriceNotFound = Price();
+
 Price::Price(std::string csvValues)
 {
     std::vector<std::string> tokens;
@@ -16,14 +18,17 @@ Price::Price(std::string csvValues)
 
     if (tokens.size() != 7)
     {
-        throw new std::exception(std::string("Could not parse price data: " + csvValues).c_str());
+        std::cout << "Could not parse price data: " << csvValues;
+        date = boost::gregorian::date(boost::gregorian::not_a_date_time);
     }
-
-    date = boost::gregorian::from_string(tokens[0]);
-    open = std::stod(tokens[1]);
-    high = std::stod(tokens[2]);
-    low = std::stod(tokens[3]);
-    close = std::stod(tokens[4]);
-    adjClose = std::stod(tokens[5]);
-    volume = std::stod(tokens[6]);
+    else
+    {
+        date = boost::gregorian::from_string(tokens[0]);
+        open = std::stod(tokens[1]);
+        high = std::stod(tokens[2]);
+        low = std::stod(tokens[3]);
+        close = std::stod(tokens[4]);
+        adjClose = std::stod(tokens[5]);
+        volume = std::stod(tokens[6]);
+    }
 }

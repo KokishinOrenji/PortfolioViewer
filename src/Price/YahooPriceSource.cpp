@@ -4,25 +4,63 @@
 
 YahooPriceSource::YahooPriceSource(
         const std::string& ticker,
-        const std::shared_ptr<IHttpClient>& webRequest)
+        const std::shared_ptr<IHttpClient>& webRequest,
+        bool verbose)
         : ticker(ticker),
           WebPriceSource(webRequest),
-          url("https://query1.finance.yahoo.com/v7/finance/download/$ticker?period1=$start&period2=$end&interval=1d&events=history&includeAdjustedClose=true")
+          url("https://query1.finance.yahoo.com/v7/finance/download/$ticker?period1=$start&period2=$end&interval=1d&events=history&includeAdjustedClose=true"),
+          verbose(verbose)
 {}
 
-std::future<std::shared_ptr<Price>> YahooPriceSource::GetPriceAsync(const boost::gregorian::date& date) {
-    return std::async(std::launch::async, [this, date]() -> std::shared_ptr<Price> {
-        std::cout << "Starting " << ticker << std::endl;
+std::future<Price> YahooPriceSource::GetPriceAsync(const boost::gregorian::date& date) {
+    return std::async(std::launch::async, [this, date]() -> Price {
+        auto startDay = date + boost::gregorian::days(-7);
+        auto prices = GetPricesAsync(startDay, date).get();
+        auto closestPrice = std::find_if(
+                prices.crbegin(),
+                prices.crend(),
+                [date](const Price & price) { return price.date <= date; });
+        if (closestPrice != prices.crend())
+        {
+            if (closestPrice->date != date)
+            {
+                std::stringstream error;
+                error << "Could not find a price for "
+                    << ticker
+                    << " for this date "
+                    << boost::gregorian::to_iso_extended_string(date)
+                    << " using price from this date instead: "
+                    << boost::gregorian::to_iso_extended_string(closestPrice->date)
+                    << std::endl;
+            }
+            return *closestPrice;
+        }
+        std::cout << "Could not find price for "
+                  << ticker
+                  << " from Yahoo for date "
+                  << boost::gregorian::to_iso_extended_string(date)
+                  << std::endl;
+        return Price::PriceNotFound;
+    });
+}
+
+std::future<std::vector<Price>> YahooPriceSource::GetPricesAsync(const boost::gregorian::date& startDate, const boost::gregorian::date& endDate) {
+    return std::async(std::launch::async, [this, startDate, endDate]() -> std::vector<Price> {
+        if (verbose) {
+            std::cout << "Starting " << ticker << std::endl;
+        }
+        // Construct the URL with start and end dates
         auto urlWithSubs = url;
-        auto nextDay = date + boost::gregorian::days(1);
-        auto startString = ConvertToTTime(date);
-        auto endString = ConvertToTTime(nextDay);
+        auto startString = ConvertToTTime(startDate);
+        auto endString = ConvertToTTime(endDate);
         boost::algorithm::replace_all(urlWithSubs, "$ticker", ticker);
         boost::algorithm::replace_all(urlWithSubs, "$start", startString);
         boost::algorithm::replace_all(urlWithSubs, "$end", endString);
 
-        std::cout << url << std::endl;
-        std::cout << urlWithSubs << std::endl;
+        if (verbose) {
+            std::cout << url << std::endl;
+            std::cout << urlWithSubs << std::endl;
+        }
 
         // Assuming GetAsync returns a future<string>
         auto futureFromWeb = GetAsync(urlWithSubs);
@@ -30,19 +68,32 @@ std::future<std::shared_ptr<Price>> YahooPriceSource::GetPriceAsync(const boost:
         // Wait for the async operation to finish and get the result
         std::string fromWeb = futureFromWeb.get();
 
-        std::vector<std::string> tokens;
-        std::string token;
+        // Parse the response and populate the vector of prices
+        std::vector<Price> prices;
         std::istringstream stream(fromWeb);
-        while (std::getline(stream, token)) {
-            tokens.push_back(token);
+        std::string line;
+        std::getline(stream, line); // Skip header line
+        while (std::getline(stream, line)) {
+            if (line.find("null") == std::string::npos) {
+                prices.emplace_back(line);
+            }
+            else {
+                std::cout << "Could not parse prices for "
+                    << ticker
+                    << ". Input: "
+                    << line
+                    << std::endl;
+            }
         }
 
-        if (tokens.size() < 2) {
-            throw std::runtime_error("Could not retrieve price for: " + ticker + ":" + fromWeb);
+        if (prices.empty()) {
+            std::cout << "No prices retrieved for: " + ticker;
         }
 
-        std::cout << "Ending " << ticker << std::endl;
-        return std::make_shared<Price>(tokens[1]);
+        if (verbose) {
+            std::cout << "Ending " << ticker << std::endl;
+        }
+        return prices;
     });
 }
 

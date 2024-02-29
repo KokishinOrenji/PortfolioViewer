@@ -8,13 +8,16 @@ class YahooPriceSource : public WebPriceSource {
 private:
     const std::string ticker;
     const std::string url;
+    const bool verbose;
 
 public:
     YahooPriceSource(
             const std::string& ticker,
-            const std::shared_ptr<IHttpClient>& webRequest);
+            const std::shared_ptr<IHttpClient>& webRequest,
+            bool verbose = false);
 
-    std::future<std::shared_ptr<Price>> GetPriceAsync(const boost::gregorian::date& date) override;
+    std::future<Price> GetPriceAsync(const boost::gregorian::date& date) override;
+    std::future<std::vector<Price>> GetPricesAsync(const boost::gregorian::date& startDate, const boost::gregorian::date& endDate) override;
 
 private:
     static std::string ConvertToTTime(const boost::gregorian::date& date);

@@ -8,6 +8,7 @@ class Portfolio {
 public:
     explicit Portfolio(const std::vector<std::shared_ptr<Position>> &positions);
     static const std::vector<std::string> inputColumns;
+    static const std::vector<std::string> optionalInputColumns;
     static const std::vector<std::string> generatedColumns;
     std::vector<std::shared_ptr<Position>> positions;
     std::string GetCsvFormat(const boost::gregorian::date& date);

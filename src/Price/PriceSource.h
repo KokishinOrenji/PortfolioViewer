@@ -10,7 +10,8 @@
 class IPriceSource
 {
 public:
-    virtual std::future<std::shared_ptr<Price>> GetPriceAsync(const boost::gregorian::date& date) = 0;
+    virtual std::future<Price> GetPriceAsync(const boost::gregorian::date& date) = 0;
+    virtual std::future<std::vector<Price>> GetPricesAsync(const boost::gregorian::date& startDate, const boost::gregorian::date& endDate) = 0;
 	virtual ~IPriceSource() {}
 };
 

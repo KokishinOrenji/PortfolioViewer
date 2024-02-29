@@ -16,9 +16,8 @@ void FilePriceRepository::LoadData() {
             continue;
         }
         auto dateFromFile = boost::gregorian::from_string(cols[0]);
-        auto price = std::make_shared<Price>(dateFromFile, std::stod(cols[2]));
 
-        priceMap[cols[1]].push_back(price);
+        priceMap[cols[1]].emplace_back(dateFromFile, std::stod(cols[2]));
     }
 }
 

@@ -8,6 +8,7 @@ std::string GenerateCsvPortfolioValuation(const boost::gregorian::date &date);
 int main() {
     boost::gregorian::date today = boost::gregorian::day_clock::local_day();
     boost::gregorian::date twenty07 = boost::gregorian::date(2007, 02, 17);
+    boost::gregorian::date wednesday = boost::gregorian::date(2024, 02, 21);
     std::string csvValues = GenerateCsvPortfolioValuation(today);
     std::cout << csvValues;
 }
