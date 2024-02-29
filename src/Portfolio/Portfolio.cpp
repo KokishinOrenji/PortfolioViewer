@@ -7,7 +7,7 @@
 Portfolio::Portfolio(const std::vector<std::shared_ptr<Position>> &positions) : positions(positions) {}
 
 const std::vector<std::string> Portfolio::inputColumns = {"Date","Ticker","Type","Liquidity Type","Price Source","Quantity"};
-const std::vector<std::string> Portfolio::optionalInputColumns = {"Multiplier", "Comment"};
+const std::vector<std::string> Portfolio::optionalInputColumns = {"ChangeType","Multiplier", "Comment"};
 const std::vector<std::string> Portfolio::generatedColumns = {"Price","Value"};
 
 std::string Portfolio::GetCsvFormat(const boost::gregorian::date& date)
@@ -95,8 +95,9 @@ std::shared_ptr<Portfolio> PortfolioFactory::createFromCsvFileContents(const std
                     posDate,
                     PriceSourceFactory::Create(cols[4], cols[1]),
                     std::stod(cols[5]),
-                    numberOfColumns > expectedColumns ? std::stod(cols[6]) : 1,
-                    numberOfColumns == expectedColumnsWithOptional ? cols[7] : "");
+                    cols[6],
+                    (numberOfColumns > expectedColumns && !cols[7].empty()) ? std::stod(cols[7]) : 1,
+                    numberOfColumns == expectedColumnsWithOptional ? cols[8] : "");
 
             if (existingPos == positionsMap.end())
             {
