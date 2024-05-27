@@ -1,5 +1,6 @@
 #include <string>
 #include <curl/curl.h>
+#include <iostream>
 #include "HttpClient.h"
 
 HttpClient::HttpClient(const std::string &certLocation, bool verbose)
@@ -26,7 +27,8 @@ std::future<std::string> HttpClient::GetAsync(const std::string &url) {
         }
         catch (const std::exception & e)
         {
-                curl_easy_cleanup(curl);
+            std::cout << e.what() << std::endl;
+            curl_easy_cleanup(curl);
         };
         if (!curl) {
             throw new std::exception("Could not initialise curl.");

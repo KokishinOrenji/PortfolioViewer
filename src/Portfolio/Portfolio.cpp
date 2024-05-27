@@ -6,7 +6,7 @@
 
 Portfolio::Portfolio(const std::vector<std::shared_ptr<Position>> &positions) : positions(positions) {}
 
-const std::vector<std::string> Portfolio::inputColumns = {"Date","Ticker","Type","Liquidity Type","Price Source","Quantity"};
+const std::vector<std::string> Portfolio::inputColumns = {"Date","Ticker","Type","Liquidity Type","Price Source","Quantity","Currency"};
 const std::vector<std::string> Portfolio::optionalInputColumns = {"ChangeType","Multiplier", "Comment"};
 const std::vector<std::string> Portfolio::generatedColumns = {"Price","Value"};
 
@@ -26,7 +26,9 @@ std::string Portfolio::GetCsvFormat(const boost::gregorian::date& date)
                 << "," << position->liquidityType
                 << "," << position->priceSourceName
                 << "," << position->quantity
+                << "," << position->currency
                 << "," << position->multiplier
+                << "," << "NA"
                 << "," << position->comment
                 << "," << price
                 << "," << price * position->quantity
@@ -88,16 +90,17 @@ std::shared_ptr<Portfolio> PortfolioFactory::createFromCsvFileContents(const std
             auto ticker = cols[1];
             auto existingPos = positionsMap.find(ticker);
             auto candidateNewPos = std::make_shared<Position>(
-                    cols[1],
+                    ticker,
                     cols[2],
                     cols[3],
                     cols[4],
                     posDate,
-                    PriceSourceFactory::Create(cols[4], cols[1]),
+                    PriceSourceFactory::Create(cols[4], cols[1], cols[6]),
                     std::stod(cols[5]),
                     cols[6],
-                    (numberOfColumns > expectedColumns && !cols[7].empty()) ? std::stod(cols[7]) : 1,
-                    numberOfColumns == expectedColumnsWithOptional ? cols[8] : "");
+                    cols[7],
+                    (numberOfColumns > expectedColumns && !cols[8].empty()) ? std::stod(cols[8]) : 1,
+                    numberOfColumns == expectedColumnsWithOptional ? cols[9] : "");
 
             if (existingPos == positionsMap.end())
             {

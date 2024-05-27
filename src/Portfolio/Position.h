@@ -13,6 +13,7 @@ public:
              const boost::gregorian::date &date,
              const std::shared_ptr<IPriceSource> &priceSource,
              double quantity,
+             const std::string& currency,
              std::string changeTypeString,
              double multiplier,
              const std::string &comment);
@@ -32,6 +33,7 @@ public:
     std::string priceSourceName;
     boost::gregorian::date date;
     double multiplier;
+    std::string currency;
     std::string comment;
 
     std::future<double> GetPriceAsync(const boost::gregorian::date &date);

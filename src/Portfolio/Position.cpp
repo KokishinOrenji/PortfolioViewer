@@ -8,9 +8,10 @@ Position::Position(
         const boost::gregorian::date& date,
         const std::shared_ptr<IPriceSource> &priceSource,
         double quantity,
+        const std::string& currency,
         std::string changeTypeString,
         double multiplier,
-        const std::string & comment)
+        const std::string& comment)
         : priceSource(priceSource),
           quantity(quantity), ticker(ticker),
           type(type),
@@ -18,6 +19,7 @@ Position::Position(
           priceSourceName(priceSourceName),
           date(date),
           multiplier(multiplier),
+          currency(currency),
           comment(comment) {
     changeType = convertChangeType(changeTypeString);
 }

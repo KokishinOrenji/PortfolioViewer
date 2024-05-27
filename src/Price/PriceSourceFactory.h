@@ -7,7 +7,7 @@
 
 class PriceSourceFactory {
 public:
-    static std::shared_ptr<IPriceSource> Create(const std::string& priceSourceName, const std::string& ticker);
+    static std::shared_ptr<IPriceSource> Create(const std::string& priceSourceName, const std::string& ticker, const std::string& currency);
 };
 
 

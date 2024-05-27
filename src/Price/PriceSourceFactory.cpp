@@ -1,13 +1,20 @@
 #include "PriceSourceFactory.h"
 #include "YahooPriceSource.h"
 #include "FilePriceSource.h"
+#include "CompositePriceSource.h"
 
-std::shared_ptr<IPriceSource> PriceSourceFactory::Create(const std::string& priceSourceName, const std::string& ticker)
+std::shared_ptr<IPriceSource> PriceSourceFactory::Create(const std::string& priceSourceName, const std::string& ticker, const std::string& currency)
 {
     if (priceSourceName == "Yahoo")
     {
         auto httpClient = std::make_shared<HttpClient>("G:\\Program Files\\Git\\mingw64\\etc\\ssl\\certs\\ca-bundle.crt");
-        return std::make_shared<YahooPriceSource>(ticker, httpClient);
+        auto priceSource = std::make_shared<YahooPriceSource>(ticker, httpClient);
+        if (currency != "GBP")
+        {
+            auto multiplierSource = std::make_shared<YahooPriceSource>(currency + "GBP=X", httpClient);
+            return std::make_shared<CompositePriceSource>(priceSource, multiplierSource);
+        }
+        return priceSource;
     }
     if (priceSourceName == "FILE")
     {
