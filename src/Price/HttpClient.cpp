@@ -13,8 +13,12 @@ std::future<std::string> HttpClient::GetAsync(const std::string &url) {
     return std::async(std::launch::async, [this, url]() -> std::string {
         auto curl = curl_easy_init();
         CURLcode res;
+        struct curl_slist* headers = nullptr;
         try
         {
+            headers = curl_slist_append(headers, "user-agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
             curl_easy_setopt(curl, CURLOPT_CAINFO, certLocation.c_str());
             curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
             curl_easy_setopt(curl, CURLOPT_VERBOSE, verbose);
