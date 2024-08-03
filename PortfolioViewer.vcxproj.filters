@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Portfolio">
+      <UniqueIdentifier>{674c5706-a2d4-4b39-b0d4-b90a9c8cca94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Price">
+      <UniqueIdentifier>{3b9943cf-371d-45fe-a807-c78c25a63c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strategies">
+      <UniqueIdentifier>{aadf2e9e-1a8d-4a95-870c-791d7854700b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Statistics">
+      <UniqueIdentifier>{ae62bfb8-158d-4179-aff5-13da5cecf378}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\portfolio\Portfolio.cpp">
+      <Filter>Portfolio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\portfolio\Position.cpp">
+      <Filter>Portfolio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\FilePriceRepository.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\FilePriceSource.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\HttpClient.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\Price.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\PriceSourceFactory.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\WebPriceSource.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\YahooPriceSource.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MovingAverage\MovingAverage.cpp">
+      <Filter>Statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strategies\TradingStrategy.cpp">
+      <Filter>Strategies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\price\CompositePriceSource.cpp">
+      <Filter>Price</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\portfolio\Portfolio.h">
+      <Filter>Portfolio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\portfolio\Position.h">
+      <Filter>Portfolio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\FilePriceRepository.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\FilePriceSource.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\HttpClient.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\Price.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\PriceSource.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\PriceSourceFactory.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\WebPriceSource.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\YahooPriceSource.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MovingAverage\MovingAverage.h">
+      <Filter>Statistics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Strategies\TradingStrategy.h">
+      <Filter>Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\price\CompositePriceSource.h">
+      <Filter>Price</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

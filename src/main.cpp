@@ -13,12 +13,13 @@ int main() {
     boost::gregorian::date twenty07 = boost::gregorian::date(2007, 02, 17);
     boost::gregorian::date fifteenthFeb2024 = boost::gregorian::date(2024, 02, 15);
     boost::gregorian::date wednesday = boost::gregorian::date(2024, 02, 21);
-    boost::gregorian::date monthAgo = boost::gregorian::date(2024, 5, 7);
     boost::gregorian::date monthsAgo = boost::gregorian::date(2024, 4, 1);
     //boost::gregorian::date today = boost::gregorian::date(2024, 7, 5);
     boost::gregorian::date today = boost::gregorian::day_clock::local_day();
+    boost::gregorian::date monthAgo = today - boost::gregorian::months(1);
+    boost::gregorian::date weekAgo = today - boost::gregorian::weeks(1);
 
-    std::string csvValues = GenerateCsvPortfolioValuation(monthsAgo);
+    std::string csvValues = GenerateCsvPortfolioValuation(weekAgo);
     std::cout << csvValues;
     csvValues = GenerateCsvPortfolioValuation(today);
     std::cout << csvValues;

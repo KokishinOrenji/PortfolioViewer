@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\ROOT.534.36.13\build\native\ROOT.props" Condition="Exists('packages\ROOT.534.36.13\build\native\ROOT.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{D32CE370-6580-4218-BAE6-5BC865C97A39}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>D:\Code\vcpkg\packages\xtensor_x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>D:\Code\vcpkg\packages\xtensor_x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>D:\Code\vcpkg\packages\xtensor_x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>D:\Code\vcpkg\packages\xtensor_x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+   <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MovingAverage\MovingAverage.cpp" />
+    <ClCompile Include="src\portfolio\Portfolio.cpp" />
+    <ClCompile Include="src\portfolio\Position.cpp" />
+    <ClCompile Include="src\price\CompositePriceSource.cpp" />
+    <ClCompile Include="src\price\FilePriceRepository.cpp" />
+    <ClCompile Include="src\price\FilePriceSource.cpp" />
+    <ClCompile Include="src\price\HttpClient.cpp" />
+    <ClCompile Include="src\price\Price.cpp" />
+    <ClCompile Include="src\price\PriceSourceFactory.cpp" />
+    <ClCompile Include="src\price\WebPriceSource.cpp" />
+    <ClCompile Include="src\price\YahooPriceSource.cpp" />
+    <ClCompile Include="src\Strategies\TradingStrategy.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\MovingAverage\MovingAverage.h" />
+    <ClInclude Include="src\portfolio\Portfolio.h" />
+    <ClInclude Include="src\portfolio\Position.h" />
+    <ClInclude Include="src\price\CompositePriceSource.h" />
+    <ClInclude Include="src\price\FilePriceRepository.h" />
+    <ClInclude Include="src\price\FilePriceSource.h" />
+    <ClInclude Include="src\price\HttpClient.h" />
+    <ClInclude Include="src\price\Price.h" />
+    <ClInclude Include="src\price\PriceSource.h" />
+    <ClInclude Include="src\price\PriceSourceFactory.h" />
+    <ClInclude Include="src\price\WebPriceSource.h" />
+    <ClInclude Include="src\price\YahooPriceSource.h" />
+    <ClInclude Include="src\Strategies\TradingStrategy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\boost.1.84.0\build\boost.targets" Condition="Exists('packages\boost.1.84.0\build\boost.targets')" />
+    <Import Project="packages\boost_date_time-vc140.1.84.0\build\boost_date_time-vc140.targets" Condition="Exists('packages\boost_date_time-vc140.1.84.0\build\boost_date_time-vc140.targets')" />
+    <Import Project="packages\libcurl-v143-shared.8.4.0\build\native\libcurl-v143-shared.targets" Condition="Exists('packages\libcurl-v143-shared.8.4.0\build\native\libcurl-v143-shared.targets')" />
+    <Import Project="packages\boost_math_c99-vc140.1.84.0\build\boost_math_c99-vc140.targets" Condition="Exists('packages\boost_math_c99-vc140.1.84.0\build\boost_math_c99-vc140.targets')" />
+    <Import Project="packages\boost_program_options-vc140.1.84.0\build\boost_program_options-vc140.targets" Condition="Exists('packages\boost_program_options-vc140.1.84.0\build\boost_program_options-vc140.targets')" />
+    <Import Project="packages\boost_random-vc140.1.84.0\build\boost_random-vc140.targets" Condition="Exists('packages\boost_random-vc140.1.84.0\build\boost_random-vc140.targets')" />
+    <Import Project="packages\boost_serialization-vc140.1.84.0\build\boost_serialization-vc140.targets" Condition="Exists('packages\boost_serialization-vc140.1.84.0\build\boost_serialization-vc140.targets')" />
+    <Import Project="packages\boost_unit_test_framework-vc140.1.84.0\build\boost_unit_test_framework-vc140.targets" Condition="Exists('packages\boost_unit_test_framework-vc140.1.84.0\build\boost_unit_test_framework-vc140.targets')" />
+    <Import Project="packages\OpenBLAS.0.2.14.1\build\native\openblas.targets" Condition="Exists('packages\OpenBLAS.0.2.14.1\build\native\openblas.targets')" />
+    <Import Project="packages\armadillo-code.7.800.2\build\native\armadillo-code.targets" Condition="Exists('packages\armadillo-code.7.800.2\build\native\armadillo-code.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\boost.1.84.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost.1.84.0\build\boost.targets'))" />
+    <Error Condition="!Exists('packages\boost_date_time-vc140.1.84.0\build\boost_date_time-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_date_time-vc140.1.84.0\build\boost_date_time-vc140.targets'))" />
+    <Error Condition="!Exists('packages\libcurl-v143-shared.8.4.0\build\native\libcurl-v143-shared.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libcurl-v143-shared.8.4.0\build\native\libcurl-v143-shared.targets'))" />
+    <Error Condition="!Exists('packages\boost_math_c99-vc140.1.84.0\build\boost_math_c99-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_math_c99-vc140.1.84.0\build\boost_math_c99-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost_program_options-vc140.1.84.0\build\boost_program_options-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_program_options-vc140.1.84.0\build\boost_program_options-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost_random-vc140.1.84.0\build\boost_random-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_random-vc140.1.84.0\build\boost_random-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost_serialization-vc140.1.84.0\build\boost_serialization-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_serialization-vc140.1.84.0\build\boost_serialization-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost_unit_test_framework-vc140.1.84.0\build\boost_unit_test_framework-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_unit_test_framework-vc140.1.84.0\build\boost_unit_test_framework-vc140.targets'))" />
+    <Error Condition="!Exists('packages\OpenBLAS.0.2.14.1\build\native\openblas.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\OpenBLAS.0.2.14.1\build\native\openblas.targets'))" />
+    <Error Condition="!Exists('packages\armadillo-code.7.800.2\build\native\armadillo-code.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\armadillo-code.7.800.2\build\native\armadillo-code.targets'))" />
+  </Target>
+</Project>
