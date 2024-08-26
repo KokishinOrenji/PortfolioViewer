@@ -131,7 +131,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-   <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="PriceUtils.cpp" />
+    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MovingAverage\MovingAverage.cpp" />
     <ClCompile Include="src\portfolio\Portfolio.cpp" />
     <ClCompile Include="src\portfolio\Position.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="src\Strategies\TradingStrategy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PriceUtils.h" />
     <ClInclude Include="src\MovingAverage\MovingAverage.h" />
     <ClInclude Include="src\portfolio\Portfolio.h" />
     <ClInclude Include="src\portfolio\Position.h" />

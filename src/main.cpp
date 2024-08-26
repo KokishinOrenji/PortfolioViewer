@@ -19,9 +19,9 @@ int main() {
     boost::gregorian::date monthAgo = today - boost::gregorian::months(1);
     boost::gregorian::date weekAgo = today - boost::gregorian::weeks(1);
 
-    std::string csvValues = GenerateCsvPortfolioValuation(weekAgo);
+    std::string csvValues = GenerateCsvPortfolioValuation(today);
     std::cout << csvValues;
-    csvValues = GenerateCsvPortfolioValuation(today);
+    csvValues = GenerateCsvPortfolioValuation(monthAgo);
     std::cout << csvValues;
     return 0;
 }

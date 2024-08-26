@@ -58,6 +58,9 @@
     <ClCompile Include="src\price\CompositePriceSource.cpp">
       <Filter>Price</Filter>
     </ClCompile>
+    <ClCompile Include="PriceUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\portfolio\Portfolio.h">
@@ -99,6 +102,7 @@
     <ClInclude Include="src\price\CompositePriceSource.h">
       <Filter>Price</Filter>
     </ClInclude>
+    <ClInclude Include="PriceUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
